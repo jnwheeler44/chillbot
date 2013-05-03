@@ -18,6 +18,7 @@ Commands
 - `!remind` - set a reminder. use `10h` format. i.e. `!remind 1h GET DA MEATLOAF OUT DA OVEN`
 - `!up` - uptime
 - `!contributors` - list of contributors
+- `!darkness` - Tells you the relative darkness of the conversation using very crude sentiment analysis
 
 Other stuff
 ===========
@@ -30,4 +31,4 @@ Contributing
 ============
 
 Just add read [README](https://github.com/thorncp/rubot/blob/master/README.md), make something cool, and issue a pull request.
-                  
+
