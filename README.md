@@ -19,6 +19,23 @@ Commands
 - `!up` - uptime
 - `!contributors` - list of contributors
 - `!darkness` - Tells you the relative darkness of the conversation using very crude sentiment analysis
+- `!fact <fact>` - add a fact
+- `!fact` - get a fact
+- `!goodnews <message>` - GOOD NEWS EVERYONE meme generator.
+- `!grimdark` - get a random Warhammer 40,000 proverb or random proverb of a certain topic with `!grimdark <message>`
+
+## Emoticons
+- `!lod` - ಠ_ಠ
+- `!fliptable` - (╯°□°）╯︵ ┻━┻
+- `!shrug` - ¯\\_(ツ)_/¯
+
+## Lunchtrain
+- `!lunchtrain new <time> <destination>` - Create a new lunchtrain.
+Time must be in 24 hour format. (13:00)
+- `!lunchtrain list` - List currently scheduled trains.
+- `!lunchtrain join <id>` - Join the specified train. Id's are 5 digit
+hexs and can be viewed via `!lunchtrain list`
+ 
 
 Other stuff
 ===========
