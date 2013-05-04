@@ -3,7 +3,7 @@ require 'sentimental'
 Sentimental.load_defaults
 
 class Darkness
-  HISTORY = 300
+  HISTORY = 150
 
   HUMANIZATIONS = [
     [-1, "Wow things must be really bad"],
