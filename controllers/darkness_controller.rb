@@ -1,4 +1,4 @@
-class SubstitutionController < Rubot::Controller
+class DarknessController < Rubot::Controller
   listener do
     Darkness.spy(message)
   end
