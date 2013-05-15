@@ -12,7 +12,7 @@ class BitcoinController < Rubot::Controller
   def do_shit_aight
     response = Bitcoin::Call.new
 
-    server.message "#iz", "[bitcoin] 1 BTC = #{response.average_price} -- last price: #{response.last_price}"
+    server.message "#iz", "[bitcoin] 1 BTC = #{response.average_display} -- last price: #{response.last_display}"
 
     if response.really_good_time_to_buy?
       server.message "#iz", "hey mculp, it's a *really* good time to buy."

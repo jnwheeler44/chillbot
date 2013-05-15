@@ -2,35 +2,51 @@ require 'yajl'
 require 'open-uri'
 
 module Bitcoin
-  URL = 'https://mtgox.com/api/1/BTCUSD/ticker'
+  URL = 'https://data.mtgox.com/api/2/BTCUSD/money/ticker'
 
   class Call
     def initialize
       @stats = call_and_then_parse
     end
 
+    def average
+      @stats['data']['avg']
+    end
+
+    def last
+      @stats['data']['last']
+    end
+
     def average_price
-      @stats['return']['avg']['display']
+      average['value'].to_f
     end
 
     def last_price
-      @stats['return']['last']['display']
+      last['value'].to_f
+    end
+
+    def average_display
+      average['display']
+    end
+
+    def last_display
+      last['display']
     end
 
     def good_time_to_buy?
-      (average_price.to_f / last_price.to_f) > 1.085
+      (average_price / last_price) > 1.085
     end
 
     def really_good_time_to_buy?
-      (average_price.to_f / last_price.to_f) > 1.17
+      (average_price / last_price) > 1.17
     end
 
     def SELL_QUICK_WTF_COME_ON?
-      (average_price.to_f / last_price.to_f) < 0.9
+      (average_price / last_price) < 0.9
     end
 
     def HOLY_FUCKING_SHIT_SELL_NOW?
-      (average_price.to_f / last_price.to_f) < 0.8
+      (average_price / last_price) < 0.8
     end
 
     private
