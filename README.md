@@ -28,6 +28,7 @@ Commands
 - `!lod` - ಠ_ಠ
 - `!fliptable` - (╯°□°）╯︵ ┻━┻
 - `!shrug` - ¯\\_(ツ)_/¯
+- `!zoidberg` - (\/) (°,,°) (\/)
 
 ## Lunchtrain
 - `!lunchtrain new <time> <destination>` - Create a new lunchtrain.

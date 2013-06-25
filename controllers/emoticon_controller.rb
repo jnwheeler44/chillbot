@@ -12,4 +12,8 @@ class EmoticonController < Rubot::Controller
   command :fliptable do
     reply "(╯°□°）╯︵ ┻━┻"
   end
+
+  command :zoidberg do
+    reply "(\\/) (°,,°) (\\/)"
+  end
 end
