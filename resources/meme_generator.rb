@@ -1,24 +1,52 @@
-require 'json'
+# encoding: UTF-8
 
-class MemeGenerator < Rubot::WebResource
-  CONFIG = YAML.load_file "meme_generator.yml"
-  get :generate, 'http://version1.api.memegenerator.net/Instance_Create' do |doc|
-    response = JSON.parse doc
-
-    if response['success']
-      response['result']['instanceImageUrl']
-    else
-      response['errorMessage']
-    end
+class EmoticonController < Rubot::Controller
+  command :lod do
+    reply "ಠ_ಠ"
   end
 
-  def self.create generator_id, image_id, text0, text1
-    self.generate :username => CONFIG['username'], :password => CONFIG['password'],
-      :languageCode => 'en', :generatorID => generator_id, :imageID => image_id,
-      :text0 => text0, :text1 => text1
+  command :shrug do
+    reply "¯\\_(ツ)_/¯"
   end
 
-  def self.good_news text
-    self.create '60382', '1430917', 'GOOD NEWS EVERYONE', text
+  command :fliptable do
+    reply "(╯°□°）╯︵ ┻━┻"
   end
+
+  command :zoidberg do
+    reply "(\\/) (°,,°) (\\/)"
+  end
+  command :yuno do
+    reply "(ノಠ益ಠ)ノ"
+  end
+
+  command :facepalm do
+    reply "(>ლ)"
+  end
+
+  command :flipall do
+    reply "┻━┻︵ \(°□°)/ ︵ ┻━┻"
+  end
+
+  command :zerofucks do
+    reply "╭∩╮（︶︿︶）╭∩╮"
+  end
+
+  command :kill do
+    reply "(╯°□°)--︻╦╤─ - - -"
+  end
+
+  command :huh do 
+    reply "•͡˘㇁•͡˘"
+  end
+
+  command :omg do 
+    reply "⨀_⨀"
+  end
+
+  command :bewbs do 
+    reply "(. )( .)"
+  end
+
+
 end
