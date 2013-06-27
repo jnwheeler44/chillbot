@@ -23,6 +23,7 @@ Commands
 - `!fact` - get a fact
 - `!goodnews <message>` - GOOD NEWS EVERYONE meme generator.
 - `!grimdark` - get a random Warhammer 40,000 proverb or random proverb of a certain topic with `!grimdark <message>`
+- `!sam_hills` - get a random Sam Hills acronym. Optional message for filtering with `!sam_hills <message>`
 - `!movies <zip>` - get movie listings
 
 ## Emoticons
@@ -30,6 +31,14 @@ Commands
 - `!fliptable` - (╯°□°）╯︵ ┻━┻
 - `!shrug` - ¯\\_(ツ)_/¯
 - `!zoidberg` - (\/) (°,,°) (\/)
+- `!yuno` - (ノಠ益ಠ)ノ
+- `!facepalm` - (>ლ)
+- `!flipall` - ┻━┻︵ \(°□°)/ ︵ ┻━┻
+- `!zerofucks` - ╭∩╮（︶︿︶）╭∩╮
+- `!kill` - (╯°□°)--︻╦╤─ - - -
+- `!huh` - •͡˘㇁•͡˘
+- `!omg` - ⨀_⨀
+- `!bewbs` - (. )( .) 
 
 ## Lunchtrain
 - `!lunchtrain new <time> <destination>` - Create a new lunchtrain.
