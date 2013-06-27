@@ -30,6 +30,14 @@ Commands
 - `!fliptable` - (╯°□°）╯︵ ┻━┻
 - `!shrug` - ¯\\_(ツ)_/¯
 - `!zoidberg` - (\/) (°,,°) (\/)
+- `!yuno` - (ノಠ益ಠ)ノ
+- `!facepalm` - (>ლ)
+- `!flipall` - ┻━┻︵ \(°□°)/ ︵ ┻━┻
+- `!zerofucks` - ╭∩╮（︶︿︶）╭∩╮
+- `!kill` - (╯°□°)--︻╦╤─ - - -
+- `!huh` - •͡˘㇁•͡˘
+- `!omg` - ⨀_⨀
+- `!bewbs` - (. )( .) 
 
 ## Lunchtrain
 - `!lunchtrain new <time> <destination>` - Create a new lunchtrain.
