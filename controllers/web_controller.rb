@@ -3,6 +3,10 @@ class WebController < Rubot::Controller
     reply Google.calc(:q => message.text)
   end
 
+  command :movies do
+    reply Google.movies(:q => "movies #{message.text}")
+  end
+
   command :google, :g do
     reply Google.lmgtfy_url_for(message.text)
   end

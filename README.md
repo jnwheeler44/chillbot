@@ -23,6 +23,7 @@ Commands
 - `!fact` - get a fact
 - `!goodnews <message>` - GOOD NEWS EVERYONE meme generator.
 - `!grimdark` - get a random Warhammer 40,000 proverb or random proverb of a certain topic with `!grimdark <message>`
+- `!movies <zip>` - get movie listings
 
 ## Emoticons
 - `!lod` - ಠ_ಠ
