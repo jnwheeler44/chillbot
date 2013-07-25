@@ -41,7 +41,7 @@ class TweetStreamController < Rubot::Controller
       end
     when message.text.match(/^start/)
       TweetStreamer.instance.start do |message|
-        if message !~ /(^| )RT( |:)/
+        if message !~ /^RT( |:)/
           reply "\u0002@#{message.user.screen_name}: \u0002\u0016#{message.text}"
         end
       end
