@@ -39,6 +39,7 @@ Commands
 - `!huh` - •͡˘㇁•͡˘
 - `!omg` - ⨀_⨀
 - `!bewbs` - (. )( .) 
+- `!deal` - (•_•) ( •_•)>⌐■-■ (⌐■_■)
 
 ## Lunchtrain
 - `!lunchtrain new <time> <destination>` - Create a new lunchtrain.
