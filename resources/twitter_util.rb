@@ -6,7 +6,7 @@ class TwitterUtil
     initialize_twitter
 
     if status = @twitter_client.status(status_id)
-      text = CGI.unescapeHTML(status.text.gsub("\n", ' - '))
+      text = CGI.unescapeHTML(status.full_text.gsub("\n", ' - '))
       "\x02@#{status.user.screen_name}\x02: \x16#{text}\x16"
     end
   end
