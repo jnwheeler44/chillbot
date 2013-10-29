@@ -48,4 +48,8 @@ class EmoticonController < Rubot::Controller
     reply "(. )( .)"
   end
 
+  command :deal do
+    reply "(•_•) ( •_•)>⌐■-■ (⌐■_■)"
+  end
+  
 end
