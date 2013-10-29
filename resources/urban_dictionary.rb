@@ -14,7 +14,7 @@ class UrbanDictionary < Rubot::WebResource
         result << " -- \u0016\"#{example_text}\""
       end
 
-      result
+      result.gsub(/\s^/, ' ').gsub("\r", ' ')
     else
       'Not defined yet.'
 		end
