@@ -49,6 +49,14 @@ module Bitcoin
       (average_price / last_price) < 0.8
     end
 
+    def average_worth(usd)
+      (usd * average_price).round(2)
+    end
+
+    def last_worth(usd)
+      (usd * last_price).round(2)
+    end
+
     private
 
     def call_and_then_parse
