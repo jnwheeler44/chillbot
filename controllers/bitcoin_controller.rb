@@ -6,7 +6,11 @@ class BitcoinController < Rubot::Controller
   end
 
   command :btc do
-    do_shit_aight
+    if message.text.empty?
+      do_shit_aight
+    else
+      do_shit_with_numbers(message.text.split.first.to_f)
+    end
   end
 
   def do_shit_aight
@@ -23,5 +27,13 @@ class BitcoinController < Rubot::Controller
     elsif response.HOLY_FUCKING_SHIT_SELL_NOW?
       reply "hey mculp, it's a *really* good time to sell."
     end
+  end
+
+  def do_shit_with_numbers(usd)
+    response = Bitcoin::Call.new
+    avg = response.average_worth(usd)
+    last = response.last_worth(usd)
+
+    reply "#{usd} BTC = #{avg} USD avg | #{last} USD last"
   end
 end
