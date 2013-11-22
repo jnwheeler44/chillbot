@@ -18,19 +18,19 @@ module Litecoin
     end
 
     def average_price
-      average['value'].to_f
+      average
     end
 
     def last_price
-      last['value'].to_f
+      last
     end
 
     def average_display
-      average['display']
+      average
     end
 
     def last_display
-      last['display']
+      last
     end
 
     def average_worth(usd)
