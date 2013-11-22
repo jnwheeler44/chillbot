@@ -44,7 +44,7 @@ module Litecoin
     private
 
     def call_and_then_parse
-      json = open(Bitcoin::URL).read
+      json = open(Litecoin::URL).read
       Yajl::Parser.parse(json)
     end
   end
