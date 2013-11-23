@@ -1,12 +1,12 @@
 class UrbanDictionary < Rubot::WebResource
-	get :search, "http://www.urbandictionary.com/define.php" do |doc|
-		word = doc.css('.word').first
-		definition = doc.css('.definition').first
+  get :search, "http://www.urbandictionary.com/define.php" do |doc|
+    word = doc.css('.word').first
+    definition = doc.css('.definition').first
     example = doc.css('.example').first
 
     # ugly ass irc formatting in here, not sure I like how most clients
     # handle italics
-		if word && definition && example
+    if word && definition && example
       result = "\u0002#{word.text.strip}:\u000F #{definition.text.strip}"
       example_text = example.text.strip
 
@@ -17,6 +17,6 @@ class UrbanDictionary < Rubot::WebResource
       result.gsub(/\s^/, ' ').gsub("\r", ' ')
     else
       'Not defined yet.'
-		end
-	end
+    end
+  end
 end
