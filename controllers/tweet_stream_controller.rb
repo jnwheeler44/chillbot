@@ -7,8 +7,8 @@ class TweetStreamController < Rubot::Controller
   command :tweetstream do
     case
     when message.text.match(/^following/)
-      screen_names = Tweeple.screen_names
-      reply "Following #{screen_names.empty? ? 'nobody! :/' : screen_names.join(', ')}"
+      screen_names = Tweeple.by_channel(message.to)
+      reply "Following in #{message.to}: #{screen_names.empty? ? 'nobody! :/' : screen_names.join(', ')}"
     when message.text.match(/^tracking/)
       reply "Tracking: #{TwitterKeywords.keywords.join(', ')}"
     when track = message.text.sub!(/^track/, '')
@@ -26,8 +26,8 @@ class TweetStreamController < Rubot::Controller
       end
     when follow = message.text.sub!(/^follow/, '')
       if user = TweetStreamer.instance.get_user(follow)
-        Tweeple.find_or_create(:twitter_id => user.id, :screen_name => user.screen_name)
-        reply "Following #{Tweeple.screen_names.join(', ')}"
+        Tweeple.find_or_create(:twitter_id => user.id, :screen_name => user.screen_name, :channel => message.to)
+        reply "Following in #{message.to}: #{Tweeple.by_channel(message.to).join(', ')}"
       else
         reply "User #{follow} not found."
       end
@@ -42,7 +42,13 @@ class TweetStreamController < Rubot::Controller
     when message.text.match(/^start/)
       TweetStreamer.instance.start do |message|
         if message.text !~ /^RT( |:)/
-          reply "\u0002@#{message.user.screen_name}: \u0002\u0016#{message.text}"
+          if tweep = Tweeple.find(screen_name: message.user.screen_name) and channel = tweep.channel
+            server.message channel, "\u0002@#{message.user.screen_name}: \u0002\u0016#{message.text}"
+          elsif message.text[0] == "@" && tweep = Tweeple.find(screen_name: message.text.split.first[1..-1]) and channel = tweep.channel
+            server.message channel, "\u0002@#{message.user.screen_name}: \u0002\u0016#{message.text}"
+          else
+            reply "\u0002@#{message.user.screen_name}: \u0002\u0016#{message.text}"
+          end
         end
       end
       reply "Tweeter Starting..."

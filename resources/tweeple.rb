@@ -8,4 +8,8 @@ class Tweeple < Sequel::Model(:tweeple)
   def self.screen_names
     Tweeple.select(:screen_name).limit(10).collect(&:screen_name)
   end
+
+  def self.by_channel(channel)
+    Tweeple.select(:screen_name).where(channel: channel).map(&:screen_name)
+  end
 end
