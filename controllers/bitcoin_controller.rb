@@ -16,17 +16,7 @@ class BitcoinController < Rubot::Controller
   def do_shit_aight
     response = Bitcoin::Call.new
 
-    reply "[bitcoin] 1 BTC = #{response.average_display} -- last price: #{response.last_display}"
-
-    if response.really_good_time_to_buy?
-      reply "hey mculp, it's a *really* good time to buy."
-    elsif response.good_time_to_buy?
-      reply "hey mculp, it's a good time to buy."
-    elsif response.SELL_QUICK_WTF_COME_ON?
-      reply "hey mculp, it's a good time to sell."
-    elsif response.HOLY_FUCKING_SHIT_SELL_NOW?
-      reply "hey mculp, it's a *really* good time to sell."
-    end
+    reply "[bitcoin] 1 BTC = #{response.last_display} | 24hr avg = #{response.average_display}"
   end
 
   def do_shit_with_numbers(usd)
@@ -34,6 +24,6 @@ class BitcoinController < Rubot::Controller
     avg = response.average_worth(usd)
     last = response.last_worth(usd)
 
-    reply "#{usd} BTC = #{avg} USD avg | #{last} USD last"
+    reply "#{usd} BTC = #{last} USD"
   end
 end
