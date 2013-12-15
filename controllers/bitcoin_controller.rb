@@ -1,10 +1,4 @@
 class BitcoinController < Rubot::Controller
-  on :connect do
-    Scheduler.every "1h" do
-      do_shit_aight
-    end
-  end
-
   command :btc do
     if message.text.empty?
       do_shit_aight
