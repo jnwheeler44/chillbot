@@ -3,4 +3,5 @@ resources/todo.yml
 Gemfile.lock
 .eprj
 db/*.db
+*.swp
 .rvmrc
