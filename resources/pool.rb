@@ -25,7 +25,7 @@ module Pool
   def self.block_info
     response = grab_and_parse :getblocksfound
 
-    block = response.find { |block| block.height == @last_block_number }
+    block = response.find { |block| block['height'] == @last_block_number }
 
     { reward: block['amount'].to_i, found_by: block['worker_name'], shares: "#{block['shares']} / #{block['estshares']}" }
   end
