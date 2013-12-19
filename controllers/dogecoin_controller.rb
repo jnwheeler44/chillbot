@@ -8,7 +8,7 @@ class DogecoinController < Rubot::Controller
   end
 
   def do_shit_aight
-    reply "[bitcoin] 1 DOGE = #{Dogecoin.price}"
+    reply "[dogecoin] 1 DOGE = #{Dogecoin.price} BTC"
   end
 
   def do_shit_with_numbers(number)
