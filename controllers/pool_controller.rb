@@ -12,7 +12,7 @@ class PoolController < Rubot::Controller
       msg = "[pool notice] BLOCK FOUND. REWARD: #{block[:reward]}. FOUND BY: #{block[:found_by]}. SHARES: #{block[:shares]}"
 
       SUBSCRIBED_CHANNELS.each do |channel|
-        server.msg channel, msg
+        server.message channel, msg
       end
     end
   end
