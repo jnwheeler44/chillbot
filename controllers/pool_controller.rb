@@ -7,11 +7,32 @@ class PoolController < Rubot::Controller
     end
   end
 
+  command :pool do
+    # - diff, difficulty
+    # - avgtime
+    # - lastblock
+    # - stats
+    # - help
+  end
+
   def check_for_new_block
     if block = Pool.check_for_new_block
-      msg = "[pool notice] BLOCK FOUND. REWARD: #{block[:reward]}. FOUND BY: #{block[:found_by]}. SHARES: #{block[:shares]}"
+      msg = "[pool notice] BLOCK FOUND. REWARD: #{block[:reward]}."
+
+      if block[:worker] == 'unknown'
+        Scheduler.in "1m" do
+          unless Pool.check_for_new_block
+            block_info = Pool.block_info
+
+            SUBSCRIBED_CHANNELS.each do |channel|
+              server.message channel, "[pool notice] PREVIOUS BLOCK FOUND BY: #{block_info[:found_by]}."
+            end
+          end
+        end
+      end
 
       SUBSCRIBED_CHANNELS.each do |channel|
+        msg << " FOUND BY: #{block[:found_by]}. SHARES: #{block[:shares]}." unless block[:worker] == 'unknown'
         server.message channel, msg
       end
     end

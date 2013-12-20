@@ -15,19 +15,23 @@ module Pool
     block_info if block_found
   end
 
-
-  private
-
-  def self.grab_and_parse(action)
-    JSON.parse(open(action(action)).read)[action.to_s]['data']
-  end
-
   def self.block_info
     response = grab_and_parse :getblocksfound
 
     block = response.find { |block| block['height'] == @last_block_number }
 
-    { reward: block['amount'].to_i, found_by: block['worker_name'], shares: "#{block['shares']} / #{block['estshares']}" }
+    {
+      reward:    block['amount'].to_i,
+      worker:    block['worker_name'],
+      found_by:  block['finder'],
+      shares:    "#{block['shares']} / #{block['estshares']}"
+    }
+  end
+
+  private
+
+  def self.grab_and_parse(action)
+    JSON.parse(open(action(action)).read)[action.to_s]['data']
   end
 
   def self.action(action)
