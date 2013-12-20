@@ -32,10 +32,11 @@ class PoolController < Rubot::Controller
       end
 
       SUBSCRIBED_CHANNELS.each do |channel|
-        dis_msg = msg
-        dis_msg << " FOUND BY: #{block[:found_by]}. SHARES: #{block[:shares]}." unless block[:worker] == 'unknown'
-
-        server.message channel, dis_msg
+        if block[:worker] == 'unknown'
+          server.message channel, msg
+        else
+          server.message channel, msg + " FOUND BY: #{block[:found_by]}. SHARES: #{block[:shares]}."
+        end
       end
     end
   end
