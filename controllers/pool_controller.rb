@@ -1,9 +1,14 @@
 class PoolController < Rubot::Controller
-  SUBSCRIBED_CHANNELS = ["#sfs", "#chunky"]
+  BLOCK_SUBSCRIBED_CHANNELS = ["#sfs", "#chunky"]
+  STATUS_SUBSCRIBED_CHANNELS = ["#chunky"]
 
   on :connect do
     Scheduler.every "1m" do
       check_for_new_block
+    end
+
+    Scheduler.every "15m" do
+      pool_status
     end
   end
 
@@ -13,6 +18,22 @@ class PoolController < Rubot::Controller
     # - lastblock
     # - stats
     # - help
+
+    pool_status
+  end
+
+  def pool_status
+    status = Pool.pool_status
+
+    messages = ["HASH RATE: #{status[:hash_rate]}."]
+    messages << ["WORKERS: #{status[:number_of_workers]}."]
+    messages << ["DIFFICULTY: #{status[:difficulty]}."]
+    messages << ["AVERAGE BLOCK TIME: #{status[:average_block_time]}."]
+    messages << ["TIME SINCE LAST BLOCK: #{status[:time_since_last_block]}."]
+
+    STATUS_SUBSCRIBED_CHANNELS.each do |channel|
+      server.message channel, "[pool notice] " + messages.join(" ")
+    end
   end
 
   def check_for_new_block
