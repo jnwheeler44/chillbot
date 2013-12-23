@@ -26,6 +26,7 @@ Commands
 - `!sam_hills` - get a random Sam Hills acronym. Optional message for filtering with `!sam_hills <message>`
 - `!movies <zip>` - get movie listings
 - `!sin` - to let someone know their soul is in jeopardy
+- `!highfive` - look for a highfive from someone... anyone...
 
 ## Emoticons
 - `!lod` - ಠ_ಠ
