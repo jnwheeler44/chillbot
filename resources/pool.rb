@@ -8,7 +8,7 @@ module Pool
     response = grab_and_parse :getpoolstatus
 
     {
-      hash_rate: response['hashrate'] / 100,
+      hash_rate: response['hashrate'] / 1000,
       number_of_workers: response['workers'],
       difficulty: response['networkdiff'],
       average_block_time: seconds_to_minutes_and_hours(response['esttime']),

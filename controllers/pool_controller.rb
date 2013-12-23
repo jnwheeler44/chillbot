@@ -25,11 +25,11 @@ class PoolController < Rubot::Controller
   def pool_status
     status = Pool.pool_status
 
-    messages = ["HASH RATE: #{status[:hash_rate]}."]
+    messages =  ["HASH RATE: #{status[:hash_rate]} MH/s."]
     messages << ["WORKERS: #{status[:number_of_workers]}."]
     messages << ["DIFFICULTY: #{status[:difficulty]}."]
-    messages << ["AVERAGE BLOCK TIME: #{status[:average_block_time]}."]
-    messages << ["TIME SINCE LAST BLOCK: #{status[:time_since_last_block]}."]
+    messages << ["AVERAGE BLOCK TIME: %d hours, %d minutes." % status[:average_block_time]]
+    messages << ["TIME SINCE LAST BLOCK: %d hours, %d minutes." % status[:time_since_last_block]]
 
     STATUS_SUBSCRIBED_CHANNELS.each do |channel|
       server.message channel, "[pool notice] " + messages.join(" ")
