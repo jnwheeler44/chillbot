@@ -25,6 +25,7 @@ Commands
 - `!grimdark` - get a random Warhammer 40,000 proverb or random proverb of a certain topic with `!grimdark <message>`
 - `!sam_hills` - get a random Sam Hills acronym. Optional message for filtering with `!sam_hills <message>`
 - `!movies <zip>` - get movie listings
+- `!sin` - to let someone know their soul is in jeopardy
 
 ## Emoticons
 - `!lod` - ಠ_ಠ
