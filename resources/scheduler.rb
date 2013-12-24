@@ -5,7 +5,7 @@ class Scheduler
   extend SingleForwardable
 
   def self.scheduler
-    @scheduler ||= Rufus::Scheduler.start_new
+    @scheduler ||= Rufus::Scheduler.new
   end
 
   # treat some rufus methods like they're our own
