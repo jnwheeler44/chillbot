@@ -45,14 +45,14 @@ class PoolController < Rubot::Controller
           unless Pool.check_for_new_block
             block_info = Pool.block_info
 
-            SUBSCRIBED_CHANNELS.each do |channel|
+            BLOCK_SUBSCRIBED_CHANNELS.each do |channel|
               server.message channel, "[pool notice] PREVIOUS BLOCK FOUND BY: #{block_info[:found_by]}."
             end
           end
         end
       end
 
-      SUBSCRIBED_CHANNELS.each do |channel|
+      BLOCK_SUBSCRIBED_CHANNELS.each do |channel|
         if block[:worker] == 'unknown'
           server.message channel, msg
         else
