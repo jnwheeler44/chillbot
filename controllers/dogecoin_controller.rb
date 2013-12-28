@@ -13,7 +13,12 @@ class DogecoinController < Rubot::Controller
   end
 
   def do_shit_with_numbers(number)
-    reply "#{number} DOGE = #{Dogecoin.price_of(number)} BTC"
+    number_btc = Dogecoin.price_of(number)
+
+    btc_response = Bitcoin::Call.new
+    number_usd = btc_response.last_worth(number_btc)
+
+    reply "#{number} DOGE = #{number_btc} BTC | #{number} DOGE = $#{number_usd} USD"
   end
 end
 
