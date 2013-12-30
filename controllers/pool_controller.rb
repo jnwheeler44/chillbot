@@ -4,15 +4,19 @@ class PoolController < Rubot::Controller
 
   on :connect do
     Scheduler.every "1m" do
-      Pool::POOLS.keys.each do |pool|
-        check_for_new_block pool
-      end
+      check_for_new_block :doge
+    end
+
+    Scheduler.every "1m" do
+      check_for_new_block :eac
     end
 
     Scheduler.every "15m" do
-      Pool::POOLS.keys.each do |pool|
-        pool_status pool
-      end
+      pool_status :doge
+    end
+
+    Scheduler.every "15m" do
+      pool_status :eac
     end
   end
 
