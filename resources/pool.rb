@@ -2,7 +2,7 @@ require 'open-uri'
 
 module Pool
   API_KEY = "6428cc89812e76dc925e4d6f3f27cffe8cdf33e5b4509ab29377fbe2aaff5399"
-  URL = "http://pool.chunky.ms/index.php?page=api&api_key=#{API_KEY}"
+  URL = "http://pool.chunky.ms/doge/index.php?page=api&api_key=#{API_KEY}"
 
   def self.pool_status
     response = grab_and_parse :getpoolstatus
