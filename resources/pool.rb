@@ -43,6 +43,8 @@ class Pool
 
     block = response.find { |block| block['height'] == @last_block_number }
 
+    return unless block
+
     {
       reward:    block['amount'].to_i,
       worker:    block['worker_name'],
