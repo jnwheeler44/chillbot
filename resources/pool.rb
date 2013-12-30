@@ -1,10 +1,18 @@
 require 'open-uri'
 
 module Pool
-  API_KEY = "6428cc89812e76dc925e4d6f3f27cffe8cdf33e5b4509ab29377fbe2aaff5399"
-  URL = "http://pool.chunky.ms/doge/index.php?page=api&api_key=#{API_KEY}"
+  POOLS = {
+   doge: "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314",
+   eac: "b0a9a08cc83c51ec192f7f6f4c801cd932399ff9695aaf79f145637aa4f815c7"
+  }
 
-  def self.pool_status
+  attr_accessor :coin
+
+  def initialize(coin = :doge)
+    @coin = coin
+  end
+
+  def pool_status
     response = grab_and_parse :getpoolstatus
 
     {
@@ -16,7 +24,7 @@ module Pool
     }
   end
 
-  def self.check_for_new_block
+  def check_for_new_block
     response = grab_and_parse :getpoolstatus
     current_block_number = response['lastblock']
 
@@ -27,7 +35,7 @@ module Pool
     block_info if block_found
   end
 
-  def self.block_info
+  def block_info
     response = grab_and_parse :getblocksfound
 
     block = response.find { |block| block['height'] == @last_block_number }
@@ -42,16 +50,20 @@ module Pool
 
   private
 
-  def self.seconds_to_minutes_and_hours(seconds)
+  def seconds_to_minutes_and_hours(seconds)
     mm, ss = seconds.divmod(60)
     hh, mm = mm.divmod(60)
   end
 
-  def self.grab_and_parse(action)
+  def grab_and_parse(action)
     JSON.parse(open(action(action)).read)[action.to_s]['data']
   end
 
-  def self.action(action)
-    URL + "&action=#{action}"
+  def action(action)
+    url + "&action=#{action}"
+  end
+
+  def url
+    "http://pool.chunky.ms/#{coin}/index.php?page=api&api_key=#{POOLS[coin]}"
   end
 end
