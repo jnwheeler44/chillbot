@@ -10,6 +10,9 @@ class Pool
 
   def initialize(coin = :doge)
     @coin = coin
+
+    @@last_doge_block ||= nil
+    @@last_eac_block ||= nil
   end
 
   def pool_status
@@ -28,9 +31,9 @@ class Pool
     response = grab_and_parse :getpoolstatus
     current_block_number = response['lastblock']
 
-    block_found = @last_block_number != current_block_number
+    block_found = self.class.class_variable_get("@@last_#{coin}_block") != current_block_number
 
-    @last_block_number = current_block_number
+    self.class.class_variable_set("@@last_#{coin}_block", current_block_number)
 
     block_info if block_found
   end
