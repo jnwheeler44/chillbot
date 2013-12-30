@@ -1,6 +1,6 @@
 require 'open-uri'
 
-module Pool
+class Pool
   POOLS = {
    doge: "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314",
    eac: "b0a9a08cc83c51ec192f7f6f4c801cd932399ff9695aaf79f145637aa4f815c7"
