@@ -3,20 +3,16 @@ class PoolController < Rubot::Controller
   STATUS_SUBSCRIBED_CHANNELS = ["#chunky"]
 
   on :connect do
-    Scheduler.every "1m" do
-      check_for_new_block :doge
+    Pool::POOLS.keys.each do |pool|
+      Scheduler.every "1m" do
+        check_for_new_block pool
+      end
     end
 
-    Scheduler.every "1m" do
-      check_for_new_block :eac
-    end
-
-    Scheduler.every "15m" do
-      pool_status :doge
-    end
-
-    Scheduler.every "15m" do
-      pool_status :eac
+    Pool::POOLS.keys.each do |pool|
+      Scheduler.every "60m" do
+        pool_status pool
+      end
     end
   end
 

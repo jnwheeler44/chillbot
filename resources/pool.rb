@@ -3,7 +3,8 @@ require 'open-uri'
 class Pool
   POOLS = {
    doge: "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314",
-   eac: "b0a9a08cc83c51ec192f7f6f4c801cd932399ff9695aaf79f145637aa4f815c7"
+   eac: "b0a9a08cc83c51ec192f7f6f4c801cd932399ff9695aaf79f145637aa4f815c7",
+   moon: "3543a1d38dadd3c647fe8da330f4990c7acde8f04b5cebd0f996c937b87372cb"
   }
 
   attr_accessor :coin
@@ -13,6 +14,7 @@ class Pool
 
     @@last_doge_block ||= nil
     @@last_eac_block ||= nil
+    @@last_moon_block ||= nil
   end
 
   def pool_status
@@ -31,7 +33,8 @@ class Pool
     response = grab_and_parse :getpoolstatus
     current_block_number = response['lastblock']
 
-    block_found = self.class.class_variable_get("@@last_#{coin}_block") != current_block_number
+    last_block = self.class.class_variable_get("@@last_#{coin}_block")
+    block_found = last_block && last_block != current_block_number
 
     self.class.class_variable_set("@@last_#{coin}_block", current_block_number)
 
@@ -41,9 +44,7 @@ class Pool
   def block_info
     response = grab_and_parse :getblocksfound
 
-    block = response.find { |block| block['height'] == @last_block_number }
-
-    return unless block
+    block = response.find { |block| block['height'] == self.class.class_variable_get("@@last_#{coin}_block") }
 
     {
       reward:    block['amount'].to_i,
