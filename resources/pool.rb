@@ -3,8 +3,7 @@ require 'open-uri'
 class Pool
   POOLS = {
    doge: "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314",
-   eac: "b0a9a08cc83c51ec192f7f6f4c801cd932399ff9695aaf79f145637aa4f815c7",
-   moon: "3543a1d38dadd3c647fe8da330f4990c7acde8f04b5cebd0f996c937b87372cb"
+   eac: "b0a9a08cc83c51ec192f7f6f4c801cd932399ff9695aaf79f145637aa4f815c7"
   }
 
   attr_accessor :coin
