@@ -17,7 +17,7 @@ class PriceController < Rubot::Controller
   end
 
   def do_shit_with_numbers(coin, number)
-    number_btc = Earthcoin.price_of(coin, number)
+    number_btc = Price.price_of(coin, number)
 
     btc_response = Bitcoin::Call.new
     number_usd = btc_response.last_worth(number_btc)
