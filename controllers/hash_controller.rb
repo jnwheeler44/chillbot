@@ -24,7 +24,7 @@ class HashController < Rubot::Controller
     coins = Hash.coins_per_day(difficulty_and_reward, khash)
 
     args = [khash, diff.to_f, reward.to_f, coins]
-    reply "[khash calc] %s kh/s on any coin with %.1f difficulty and %.4f would yield %.4f coins per day" % args
+    reply "[khash calc] %s kh/s on any coin with %.1f difficulty and a reward of %.4f coin per block would yield %.4f coins per day" % args
   end
   
   def do_shit_with_numbers(coin, number)
