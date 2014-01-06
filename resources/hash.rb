@@ -23,7 +23,7 @@ class Hash
 
   def self.coins_per_day(difficulty_and_reward, khash)
     numerator = difficulty_and_reward[:difficulty] * 2**32
-    denominator = khash * 1000
+    denominator = khash.to_f * 1000
 
     average_block_seconds = numerator / denominator
 
