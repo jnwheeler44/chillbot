@@ -9,6 +9,24 @@ class HashController < Rubot::Controller
     end
   end
 
+  command :khashdiff do
+    args = message.text.split
+
+    if args.size == 3
+      do_shit_aight(args[0], args[1], args[2])
+    else
+      reply "usage: !khashdiff [diff] [reward] [khash]"
+    end
+  end
+
+  def do_shit_aight(diff, reward, khash)
+    difficulty_and_reward = { difficulty: diff.to_f, reward: reward.to_f }
+    coins = Hash.coins_per_day(difficulty_and_reward, number)
+
+    args = [khash, diff.to_f, reward.to_f, coins]
+    reply "[khash calc] %s kh/s on any coin with %.1f difficulty and %.4f would yield %.4f coins per day" % args
+  end
+  
   def do_shit_with_numbers(coin, number)
     difficulty_and_reward = Hash.difficulty_and_reward(coin)
     coins = Hash.coins_per_day(difficulty_and_reward, number)
