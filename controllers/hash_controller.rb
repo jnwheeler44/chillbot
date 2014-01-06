@@ -13,8 +13,13 @@ class HashController < Rubot::Controller
     difficulty_and_reward = Hash.difficulty_and_reward(coin)
     coins = Hash.coins_per_day(difficulty_and_reward, number)
 
-    args = [number, coin.upcase, difficulty_and_reward[:difficulty], coins]
-    reply "[khash calc] %s kh/s on %s with %s difficulty would yield %s coins per day on average." % args
+    number_btc = Price.price_of(coin, coins)
+
+    btc_response = Bitcoin::Call.new
+    number_usd = btc_response.last_worth(number_btc)
+
+    args = [number, coin.upcase, difficulty_and_reward[:difficulty], coins, number_btc, number_usd]
+    reply "[khash calc] %s kh/s on %s with %s difficulty would yield %s coins per day OR %s BTC per day OR $%s USD per day on average." % args
   end
 end
 
