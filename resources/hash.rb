@@ -30,6 +30,6 @@ class Hash
     seconds_per_day = 60 * 60 * 24
     blocks_per_day = seconds_per_day / average_block_seconds
 
-    blocks_per_day * reward
+    blocks_per_day * difficulty_and_reward[:reward]
   end
 end
