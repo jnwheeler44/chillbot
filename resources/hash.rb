@@ -12,7 +12,7 @@ class Hash
     when 'EAC'
       { difficulty: Pool.new(:eac).pool_status[:difficulty], reward: 10500 }
     else
-      data = JSON.parse(open(url(coin).read))['Data']
+      data = JSON.parse(open(url(coin)).read)['Data']
       { difficulty: data['Difficulty'], reward: data['BlockReward'] }
     end
   end
