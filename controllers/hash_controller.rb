@@ -18,8 +18,8 @@ class HashController < Rubot::Controller
     btc_response = Bitcoin::Call.new
     number_usd = btc_response.last_worth(number_btc)
 
-    args = [number, coin.upcase, difficulty_and_reward[:difficulty], coins, number_btc, number_usd]
-    reply "[khash calc] %s kh/s on %s with %.1f difficulty would yield %.4f coins per day OR %.8f BTC per day OR $%.2f USD per day on average." % args
+    args = [number, coin.upcase, difficulty_and_reward[:difficulty], coins, coin.upcase, number_btc, number_usd]
+    reply "[khash calc] %s kh/s on %s with %.1f difficulty would yield %.4f %s per day OR %.8f BTC per day OR $%.2f USD per day on average." % args
   end
 end
 
