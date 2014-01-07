@@ -14,7 +14,7 @@ class Pool
 
     @@last_doge_block ||= nil
     @@last_eac_block ||= nil
-    @@last_moon_block ||= nil
+    @@last_rpc_block ||= nil
   end
 
   def pool_status

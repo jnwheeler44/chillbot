@@ -11,6 +11,8 @@ class Hash
       { difficulty: Pool.new(:doge).pool_status[:difficulty], reward: 500000 }
     when 'EAC'
       { difficulty: Pool.new(:eac).pool_status[:difficulty], reward: 10500 }
+    when 'RPC'
+      { difficulty: Pool.new(:eac).pool_status[:difficulty], reward: 1 }
     else
       data = JSON.parse(open(url(coin)).read)['Data']
       { difficulty: data['Difficulty'], reward: data['BlockReward'] }
