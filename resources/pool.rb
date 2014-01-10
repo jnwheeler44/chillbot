@@ -4,7 +4,8 @@ class Pool
   POOLS = {
    doge: "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314",
    eac: "b0a9a08cc83c51ec192f7f6f4c801cd932399ff9695aaf79f145637aa4f815c7",
-   rpc: "9a3505cce3348c3e47a247c2d4b7991b5ae74fc7ebf71a27a950699f2b647840"
+   rpc: "9a3505cce3348c3e47a247c2d4b7991b5ae74fc7ebf71a27a950699f2b647840",
+   lot: "5db84a8df70b9d8d5a763937ae155e184ba71014ef6868c9673ac4da242ad711"
   }
 
   attr_accessor :coin
@@ -15,6 +16,7 @@ class Pool
     @@last_doge_block ||= nil
     @@last_eac_block ||= nil
     @@last_rpc_block ||= nil
+    @@last_lot_block ||= nil
   end
 
   def pool_status
