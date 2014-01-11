@@ -22,19 +22,21 @@ class HashController < Rubot::Controller
   command :profits do
     args = message.text.split
 
-    if args.size == 2 && args[1] == 'all'
+    if args.size == 1 && args[0] == 'all'
       reply "call coinwarz."
     else
-      if args.size == 2 && args[1] =~ /^\d+$/
-        profits = Hash.chunky_profits(args[1])
+      if args.size == 1 && args[0] =~ /^\d+$/
+        khash = args[0]
       else
-        profits = Hash.chunky_profits
+        khash = 1000
       end
+
+      profits = Hash.chunky_profits(khash)
 
       message = "[profits] "
 
       params = profits.map do |coin_pair|
-        "%s: %.8f BTC / $%.2f USD per 1 MH/s per day" % coin_pair
+        "%s: %.8f BTC / $%.2f USD per %s kh/s per day" % [coin_pair, khash].flatten
       end
 
       reply message + params.join(" | ")
