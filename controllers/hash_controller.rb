@@ -19,6 +19,35 @@ class HashController < Rubot::Controller
     end
   end
 
+  command :profits do
+    args = message.text.split
+
+    if args.size == 2 && args[1] == 'all'
+      reply "call coinwarz."
+    else
+      profits = Hash.chunky_profits
+
+      message = "[profits] "
+      params = profits.map do |coin_pair|
+        "%s: %.8f BTC / $%.2f USD per 1 MH/s per day" % coin_pair
+      end
+
+      reply message + params.join(" | ")
+    end
+  end
+
+  command :bestcoin do
+    args = message.text.split
+
+    if args.size == 2 && args[1] == 'all'
+      reply "call coinwarz."
+    else
+      top = Hash.chunky_top_profit
+
+      reply "[best coin] %s: %.8f BTC / $%.2f USD per 1 MH/s per day" % top
+    end
+  end
+
   def do_shit_aight(diff, reward, khash)
     difficulty_and_reward = { difficulty: diff.to_f, reward: reward.to_f }
     coins = Hash.coins_per_day(difficulty_and_reward, khash)
