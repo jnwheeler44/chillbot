@@ -25,9 +25,14 @@ class HashController < Rubot::Controller
     if args.size == 2 && args[1] == 'all'
       reply "call coinwarz."
     else
-      profits = Hash.chunky_profits
+      if args.size == 2 && args[1] =~ /^\d+$/
+        profits = Hash.chunky_profits(args[1])
+      else
+        profits = Hash.chunky_profits
+      end
 
       message = "[profits] "
+
       params = profits.map do |coin_pair|
         "%s: %.8f BTC / $%.2f USD per 1 MH/s per day" % coin_pair
       end
