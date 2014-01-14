@@ -20,6 +20,7 @@ class Pool
     @@last_rpc_block ||= nil
     @@last_lot_block ||= nil
     @@last_sbc_block ||= nil
+    @@last_42_block ||= nil
   end
 
   def pool_status
