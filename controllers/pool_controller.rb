@@ -8,12 +8,6 @@ class PoolController < Rubot::Controller
         check_for_new_block pool
       end
     end
-
-    Pool::POOLS.keys.each do |pool|
-      Scheduler.every "60m" do
-        pool_status pool
-      end
-    end
   end
 
   command :pool do
