@@ -12,6 +12,17 @@ class Pool
    ltc: "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314"
   }
 
+  REWARD = {
+   doge: 500000,
+   eac: 11000,
+   rpc: 1,
+   lot: 32000,
+   sbc: 25,
+   '42' => 0.000042,
+   dgb: 8000,
+   ltc: 50
+ }
+
   attr_accessor :coin
 
   def initialize(coin = :doge)
@@ -72,7 +83,11 @@ class Pool
   end
 
   def grab_and_parse(action)
-    JSON.parse(open(action(action)).read)[action.to_s]['data']
+    url = action(action)
+
+    puts url
+
+    JSON.parse(open(url).read)[action.to_s]['data']
   end
 
   def action(action)

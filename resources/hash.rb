@@ -6,19 +6,9 @@ class Hash
   COINWARZ_URL = 'http://www.coinwarz.com/v1/api/coininformation/?apikey=e25ed31c94e1459aa1088195cccbae8f&cointag='
 
   def self.difficulty_and_reward(coin)
-    case coin.to_s.upcase
-    when 'DOGE'
-      { difficulty: Pool.new(:doge).pool_status[:difficulty], reward: 500000 }
-    when 'EAC'
-      { difficulty: Pool.new(:eac).pool_status[:difficulty], reward: 10500 }
-    when 'RPC'
-      { difficulty: Pool.new(:rpc).pool_status[:difficulty], reward: 1 }
-    when 'LOT'
-      { difficulty: Pool.new(:lot).pool_status[:difficulty], reward: 32000 }
-    when 'SBC'
-      { difficulty: Pool.new(:sbc).pool_status[:difficulty], reward: 25 }
-    when '42'
-      { difficulty: Pool.new('42').pool_status[:difficulty], reward: 0.000042 }
+    if Pool::POOLS.keys.include? coin.downcase.to_sym
+      coin_param = coin == '42' ? '42' : coin.downcase.to_sym
+      { difficulty: Pool.new(coin_param).pool_status[:difficulty], reward: Pool::REWARD[coin_param] }
     else
       data = JSON.parse(open(url(coin)).read)['Data']
       { difficulty: data['Difficulty'], reward: data['BlockReward'] }
