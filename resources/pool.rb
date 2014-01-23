@@ -23,6 +23,8 @@ class Pool
     @@last_lot_block ||= nil
     @@last_sbc_block ||= nil
     @@last_42_block ||= nil
+    @@last_dgb_block ||= nil
+    @@last_ltc_block ||= nil
   end
 
   def pool_status
