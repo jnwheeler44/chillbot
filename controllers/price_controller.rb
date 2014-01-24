@@ -22,7 +22,7 @@ class PriceController < Rubot::Controller
     btc_response = Bitcoin::Call.new
     number_usd = btc_response.last_worth(number_btc)
 
-    reply "[#{coin.upcase} price] #{number} #{coin.upcase} = #{number_btc} BTC | #{number} #{coin.upcase} = $#{number_usd} USD"
+    reply "[#{coin.upcase} price] #{number} #{coin.upcase} = %.8f BTC | #{number} #{coin.upcase} = $#{number_usd} USD" % number_btc
   end
 end
 
