@@ -7,7 +7,8 @@ class Price
 
   def self.price(coin)
     if coin.to_s.downcase == 'dgb'
-      Nokogiri::HTML.parse(open('https://www.coinmarket.io').read).css('.ticker-DGBBTC')[0].text
+      body = open('https://www.coinmarket.io', ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE).read
+      Nokogiri::HTML.parse(body).css('.ticker-DGBBTC')[0].text
     else
       JSON.parse(open(URL).read).find { |item| item['id'] == coin.to_s.downcase }['price_btc']
     end

@@ -84,9 +84,6 @@ class Pool
 
   def grab_and_parse(action)
     url = action(action)
-
-    puts url
-
     JSON.parse(open(url).read)[action.to_s]['data']
   end
 
