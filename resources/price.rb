@@ -7,7 +7,7 @@ class Price
 
   def self.price(coin)
     if coin.to_s.downcase == 'dgb'
-      0.00000200
+      0.00000250
     else
       JSON.parse(open(URL).read).find { |item| item['id'] == coin.to_s.downcase }['price_btc']
     end
