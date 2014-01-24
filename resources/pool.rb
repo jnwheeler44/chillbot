@@ -1,6 +1,9 @@
 require 'open-uri'
+require 'typhoeus'
 
 class Pool
+  Typhoeus::Config.cache ||= Cache.new
+
   POOLS = {
    doge: "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314",
    eac: "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314",
@@ -84,7 +87,8 @@ class Pool
 
   def grab_and_parse(action)
     url = action(action)
-    JSON.parse(open(url).read)[action.to_s]['data']
+    body = Typhoeus.get(url).response_body
+    JSON.parse(body)[action.to_s]['data']
   end
 
   def action(action)

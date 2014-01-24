@@ -1,5 +1,6 @@
 require 'yajl'
 require 'open-uri'
+require 'typhoeus'
 
 module Bitcoin
   URL = 'https://data.mtgox.com/api/2/BTCUSD/money/ticker'
@@ -60,7 +61,9 @@ module Bitcoin
     private
 
     def call_and_then_parse
-      json = open(Bitcoin::URL).read
+      Typhoeus::Config.cache ||= Cache.new
+
+      json = Typhoeus.get(URL).response_body
       Yajl::Parser.parse(json)
     end
   end

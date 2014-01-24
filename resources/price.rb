@@ -1,16 +1,19 @@
 require 'yajl'
 require 'open-uri'
 require 'openssl'
+require 'typhoeus'
 
 class Price
+  Typhoeus::Config.cache ||= Cache.new
   URL = 'http://www.cryptocoincharts.info/v2/api/listCoins'
 
   def self.price(coin)
     if coin.to_s.downcase == 'dgb'
-      body = open('https://www.coinmarket.io', ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE).read
+      body = Typhoeus.get('https://www.coinmarket.io', ssl_verifypeer: false).response_body
       Nokogiri::HTML.parse(body).css('.ticker-DGBBTC')[0].text
     else
-      JSON.parse(open(URL).read).find { |item| item['id'] == coin.to_s.downcase }['price_btc']
+      body = Typhoeus.get(URL).response_body
+      JSON.parse(body).find { |item| item['id'] == coin.to_s.downcase }['price_btc']
     end
   end
 

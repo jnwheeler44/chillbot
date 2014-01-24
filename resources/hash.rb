@@ -1,8 +1,10 @@
 require 'yajl'
 require 'open-uri'
 require 'openssl'
+require 'typhoeus'
 
 class Hash
+  Typhoeus::Config.cache ||= Cache.new
   COINWARZ_URL = 'http://www.coinwarz.com/v1/api/coininformation/?apikey=e25ed31c94e1459aa1088195cccbae8f&cointag='
 
   def self.difficulty_and_reward(coin)
@@ -10,7 +12,8 @@ class Hash
       coin_param = coin == '42' ? '42' : coin.downcase.to_sym
       { difficulty: Pool.new(coin_param).pool_status[:difficulty], reward: Pool::REWARD[coin_param] }
     else
-      data = JSON.parse(open(url(coin)).read)['Data']
+      body = Typhoeus.get(url(coin)).response_body
+      data = JSON.parse(body)['Data']
       { difficulty: data['Difficulty'], reward: data['BlockReward'] }
     end
   end
