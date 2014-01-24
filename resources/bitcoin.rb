@@ -63,7 +63,7 @@ module Bitcoin
     def call_and_then_parse
       Typhoeus::Config.cache ||= Cache.new
 
-      json = Typhoeus.get(URL).response_body
+      json = Typhoeus.get(URL, nosignal: true).response_body
       Yajl::Parser.parse(json)
     end
   end

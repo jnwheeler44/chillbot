@@ -9,10 +9,10 @@ class Price
 
   def self.price(coin)
     if coin.to_s.downcase == 'dgb'
-      body = Typhoeus.get('https://www.coinmarket.io', ssl_verifypeer: false).response_body
+      body = Typhoeus.get('https://www.coinmarket.io', ssl_verifypeer: false, nosignal: true).response_body
       Nokogiri::HTML.parse(body).css('.ticker-DGBBTC')[0].text
     else
-      body = Typhoeus.get(URL).response_body
+      body = Typhoeus.get(URL, nosignal: true).response_body
       JSON.parse(body).find { |item| item['id'] == coin.to_s.downcase }['price_btc']
     end
   end

@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'typhoeus'
+require_relative 'cache'
 
 class Pool
   Typhoeus::Config.cache ||= Cache.new
@@ -87,7 +88,7 @@ class Pool
 
   def grab_and_parse(action)
     url = action(action)
-    body = Typhoeus.get(url).response_body
+    body = Typhoeus.get(url, nosignal: true).response_body
     JSON.parse(body)[action.to_s]['data']
   end
 

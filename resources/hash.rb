@@ -12,7 +12,7 @@ class Hash
       coin_param = coin == '42' ? '42' : coin.downcase.to_sym
       { difficulty: Pool.new(coin_param).pool_status[:difficulty], reward: Pool::REWARD[coin_param] }
     else
-      body = Typhoeus.get(url(coin)).response_body
+      body = Typhoeus.get(url(coin), nosignal: true).response_body
       data = JSON.parse(body)['Data']
       { difficulty: data['Difficulty'], reward: data['BlockReward'] }
     end
