@@ -13,7 +13,8 @@ class Pool
    sbc: "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314",
    '42' => "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314",
    dgb: "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314",
-   ltc: "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314"
+   ltc: "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314",
+   kdc: "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314"
   }
 
   REWARD = {
@@ -24,7 +25,8 @@ class Pool
    sbc: 25,
    '42' => 0.000042,
    dgb: 8000,
-   ltc: 50
+   ltc: 50,
+   kdc: 77
  }
 
   attr_accessor :coin
@@ -40,6 +42,7 @@ class Pool
     @@last_42_block ||= nil
     @@last_dgb_block ||= nil
     @@last_ltc_block ||= nil
+    @@last_kdc_block ||= nil
   end
 
   def pool_status
@@ -88,7 +91,13 @@ class Pool
 
   def grab_and_parse(action)
     url = action(action)
-    body = Typhoeus.get(url, nosignal: true).response_body
+
+    if action == :getblocksfound
+      body = open(url).read
+    else
+      body = Typhoeus.get(url, nosignal: true).response_body
+    end
+
     JSON.parse(body)[action.to_s]['data']
   end
 

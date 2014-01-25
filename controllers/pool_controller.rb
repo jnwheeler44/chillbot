@@ -33,9 +33,7 @@ class PoolController < Rubot::Controller
     messages << ["AVERAGE BLOCK TIME: %d hours, %d minutes." % status[:average_block_time]]
     messages << ["TIME SINCE LAST BLOCK: %d hours, %d minutes." % status[:time_since_last_block]]
 
-    STATUS_SUBSCRIBED_CHANNELS.each do |channel|
-      server.message channel, "[#{coin} pool notice] " + messages.join(" ")
-    end
+    reply "[#{coin} pool notice] " + messages.join(" ")
   end
 
   def check_for_new_block(coin)
