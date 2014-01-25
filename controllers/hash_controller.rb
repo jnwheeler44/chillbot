@@ -33,10 +33,10 @@ class HashController < Rubot::Controller
 
       profits = Hash.chunky_profits(khash)
 
-      message = "[profits] "
+      message = "[profits: %s kh/s] " % khash
 
       params = profits.map do |coin_pair|
-        "%s: %.8f BTC / $%.2f USD per %s kh/s per day" % [coin_pair, khash].flatten
+        "\x02%s\x02: %.8f BTC / $%.2f USD" % coin_pair
       end
 
       reply message + params.join(" | ")
