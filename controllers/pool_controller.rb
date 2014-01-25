@@ -2,13 +2,13 @@ class PoolController < Rubot::Controller
   BLOCK_SUBSCRIBED_CHANNELS = ["#sfs", "#chunky"]
   STATUS_SUBSCRIBED_CHANNELS = ["#chunky"]
 
-  on :connect do
-    Pool::POOLS.keys.each do |pool|
-      Scheduler.every "1m" do
-        check_for_new_block pool
-      end
-    end
-  end
+  # on :connect do
+  #   Pool::POOLS.keys.each do |pool|
+  #     Scheduler.every "1m" do
+  #       check_for_new_block pool
+  #     end
+  #   end
+  # end
 
   command :pool do
     # - diff, difficulty
