@@ -8,9 +8,8 @@ class Hash
   COINWARZ_URL = 'http://www.coinwarz.com/v1/api/coininformation/?apikey=e25ed31c94e1459aa1088195cccbae8f&cointag='
 
   def self.difficulty_and_reward(coin)
-    if Pool::POOLS.keys.include? coin.downcase.to_sym
-      coin_param = coin == '42' ? '42' : coin.downcase.to_sym
-      { difficulty: Pool.new(coin_param).pool_status[:difficulty], reward: Pool::REWARD[coin_param] }
+    if Pool::COIN_REWARD.keys.include? coin.downcase
+      { difficulty: Pool.new(coin.downcase).pool_status[:difficulty], reward: Pool::COIN_REWARD[coin_param] }
     else
       body = Typhoeus.get(url(coin), nosignal: true).response_body
       data = JSON.parse(body)['Data']
@@ -49,7 +48,7 @@ class Hash
   end
 
   def self.chunky_profits(khash = 1000)
-    Pool::POOLS.keys.map do |coin|
+    Pool::COIN_REWARD.keys.map do |coin|
       coins = coins_for(coin, khash)
       btc = btc_per_day(coin, coins)
       usd = usd_per_day(btc)
