@@ -9,7 +9,7 @@ class Hash
 
   def self.difficulty_and_reward(coin)
     if Pool::COIN_REWARD.keys.include? coin.downcase
-      { difficulty: Pool.new(coin.downcase).pool_status[:difficulty], reward: Pool::COIN_REWARD[coin_param] }
+      { difficulty: Pool.new(coin.downcase).pool_status[:difficulty], reward: Pool::COIN_REWARD[coin.downcase] }
     else
       body = Typhoeus.get(url(coin), nosignal: true).response_body
       data = JSON.parse(body)['Data']
