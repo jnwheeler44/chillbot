@@ -15,12 +15,13 @@ class Pool
    '42' => 0.000042,
    'dgb' => 8000,
    'ltc' => 50,
-   'kdc' => 77
+   'kdc' => 77,
+   'leaf' => 500000
  }
 
   attr_accessor :coin
 
-  def initialize(coin = :doge)
+  def initialize(coin = 'doge')
     @coin = coin
   end
 
