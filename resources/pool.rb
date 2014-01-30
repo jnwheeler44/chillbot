@@ -16,7 +16,8 @@ class Pool
    'dgb' => 8000,
    'ltc' => 50,
    'kdc' => 77,
-   'leaf' => 500000
+   'leaf' => 500000,
+   'pot' => 420
  }
 
   attr_accessor :coin
