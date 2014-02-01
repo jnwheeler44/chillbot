@@ -17,7 +17,7 @@ class Price
         0
       end
     elsif coin.downcase == 'pot'
-      0.000025
+      0.000032
     else
       body = Typhoeus.get(URL, nosignal: true).response_body
       JSON.parse(body).find { |item| item['id'] == coin.to_s.downcase }['price_btc']
