@@ -1,7 +1,7 @@
 class UrbanDictionary < Rubot::WebResource
   get :search, "http://www.urbandictionary.com/define.php" do |doc|
     word = doc.css('.word').first
-    definition = doc.css('.definition').first
+    definition = doc.css('.meaning').first
     example = doc.css('.example').first
 
     # ugly ass irc formatting in here, not sure I like how most clients
