@@ -18,10 +18,8 @@ class Price
       end
     elsif coin.downcase == 'pot'
       begin
-        body = Typhoeus.get('https://freshmarket.co.in/index.php?page=trade&market=124', ssl_verifypeer: false, nosignal: true).response_body
-        ltc_price = Nokogiri::HTML.parse(body).css("#user-orders tr:nth-child(2) > td:nth-child(1)")[0].text
-
-        ltc_price.to_f * price('ltc').to_f
+        body = Typhoeus.get('https://cryptorush.in/index.php?p=trading&m=POT&b=BTC', ssl_verifypeer: false, nosignal: true).response_body
+        Nokogiri::HTML.parse(body).css('.leftnav-item-link[href="index.php?p=trading&m=POT&b=BTC"] b')[0].text.to_f
       rescue
         puts "error scraping coinmarket"
         0
