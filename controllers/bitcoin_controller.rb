@@ -10,14 +10,13 @@ class BitcoinController < Rubot::Controller
   def do_shit_aight
     response = Bitcoin::Call.new
 
-    reply "[bitcoin] 1 BTC = #{response.last_display} | 24hr avg = #{response.average_display}"
+    reply "[bitcoin] 1 BTC = $#{response.last_display} USD"
   end
 
   def do_shit_with_numbers(usd)
     response = Bitcoin::Call.new
-    avg = response.average_worth(usd)
     last = response.last_worth(usd)
 
-    reply "#{usd} BTC = #{last} USD"
+    reply "#{usd} BTC = $#{last} USD"
   end
 end
