@@ -13,6 +13,11 @@ class PoolController < Rubot::Controller
     end
   end
 
+  command :multiport do
+    status = Pool.multiport_status
+    reply "[pool notice] MULTIPORT: %s. WORKERS: %s. %s HASH RATE: %s MH/s" % [status[:coin], status[:workers], status[:coin], status[:rate]]
+  end
+
   def pool_status(coin = :doge)
     status = Pool.new(coin).pool_status(uncached: true)
 

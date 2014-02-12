@@ -16,7 +16,6 @@ class Pool
    'dgb' => 8000,
    'ltc' => 50,
    'kdc' => 77,
-   'leaf' => 500000,
    'pot' => 420
  }
 
@@ -52,6 +51,17 @@ class Pool
       worker:    block['worker_name'],
       found_by:  block['finder'],
       shares:    "#{block['shares']} / #{block['estshares']}"
+    }
+  end
+
+  def self.multiport_status
+    body = open('http://pool.chunky.ms/home/api/pool/status').read
+    status = JSON.parse(body)
+
+    {
+      workers: status['multiport_workers'],
+      coin: status['multiport_coin'],
+      rate: status['pools'].find { |pool| pool['coin'] == status['multiport_coin'] }['hash_rate']
     }
   end
 
