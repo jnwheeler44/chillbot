@@ -16,10 +16,10 @@ class Price
         puts "error scraping coinmarket"
         0
       end
-    elsif coin.downcase == 'pot'
+    elsif coin.downcase == 'pot' || coin.downcase == 'ruby'
       begin
         body = Typhoeus.get('https://cryptorush.in/index.php?p=trading&m=POT&b=BTC', ssl_verifypeer: false, nosignal: true).response_body
-        Nokogiri::HTML.parse(body).css('.leftnav-item-link[href="index.php?p=trading&m=POT&b=BTC"] b')[0].text.to_f
+        Nokogiri::HTML.parse(body).css('.leftnav-item-link[href="index.php?p=trading&m=' + coin.upcase + '&b=BTC"] b')[0].text.to_f
       rescue
         puts "error scraping coinmarket"
         0

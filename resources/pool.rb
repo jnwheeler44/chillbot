@@ -16,6 +16,7 @@ class Pool
    'dgb' => 8000,
    'ltc' => 50,
    'kdc' => 77,
+   'ruby' => 500,
    'pot' => 420
  }
 
