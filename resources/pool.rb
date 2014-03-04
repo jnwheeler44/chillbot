@@ -7,17 +7,15 @@ class Pool
   API_KEY = "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314"
 
   COIN_REWARD = {
-   'doge' => 250000,
-   'eac' => 11000,
    'rpc' => 1,
-   'lot' => 32000,
-   'sbc' => 25,
-   '42' => 0.000042,
    'dgb' => 8000,
-   'ltc' => 50,
    'kdc' => 16,
    'ruby' => 500,
-   'pot' => 420
+   'pot' => 420,
+   'sun' => 10,
+   'ron' => 0.125,
+   'flap' => 500000,
+   'aur' => 25
  }
 
   attr_accessor :coin
@@ -56,7 +54,7 @@ class Pool
   end
 
   def self.multiport_status
-    body = open('http://pool.chunky.ms/home/api/pool/status').read
+    body = open('http://chunkypools.com/api/pool/status').read
     status = JSON.parse(body)
 
     {
@@ -86,7 +84,7 @@ class Pool
   end
 
   def url
-    "http://pool.chunky.ms/#{coin}/index.php?page=api&api_key=#{API_KEY}"
+    "https://chunkypools.com/#{coin}/index.php?page=api&api_key=#{API_KEY}"
   end
 
   def action(action)
