@@ -4,6 +4,7 @@ require_relative 'cache'
 
 class Pool
   Typhoeus::Config.cache ||= Cache.new
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
   API_KEY = "05d16735674051d72ea5f0ce0b60adde14e66544b388bf0b313aef9a2be65314"
 
   COIN_REWARD = {
