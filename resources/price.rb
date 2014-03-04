@@ -25,8 +25,13 @@ class Price
         0
       end
     else
-      body = Typhoeus.get(URL, nosignal: true).response_body
-      JSON.parse(body).find { |item| item['id'] == coin.to_s.downcase }['price_btc']
+      begin
+        body = Typhoeus.get(URL, nosignal: true).response_body
+        JSON.parse(body).find { |item| item['id'] == coin.to_s.downcase }['price_btc']
+      rescue
+        puts "wtf market is #{coin} on?"
+        0
+      end
     end
   end
 

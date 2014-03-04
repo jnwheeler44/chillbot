@@ -55,7 +55,7 @@ class Pool
   end
 
   def self.multiport_status
-    body = open('http://chunkypools.com/api/pool/status').read
+    body = open('https://chunkypools.com/api/pool/status').read
     status = JSON.parse(body)
 
     {
