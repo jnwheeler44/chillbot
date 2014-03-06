@@ -27,6 +27,7 @@ Commands
 - `!movies <zip>` - get movie listings
 - `!sin` - to let someone know their soul is in jeopardy
 - `!highfive` - look for a highfive from someone... anyone...
+- `!treppin` or `!trep` - Encouragement from your favorite trep.
 
 ## Emoticons
 - `!lod` - ಠ_ಠ
